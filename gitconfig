@@ -1,0 +1,5 @@
+[user]
+	name = David Danzilio
+	email = david.danzilio@mac.com
+[credential]
+	helper = osxkeychain
