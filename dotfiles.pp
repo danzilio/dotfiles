@@ -18,13 +18,13 @@ class dotfiles {
   }
 
   $links = {
-    "${home}/.gitconfig" => "${home}/.dotfiles/gitconfig",
-    "${home}/.vim" => "${home}/.dotfiles/vim",
-    "${home}/.vimrc" => "${home}/.vim/vimrc",
+    "${home}/.gitconfig"   => "${home}/.dotfiles/gitconfig",
+    "${home}/.vim"         => "${home}/.dotfiles/vim",
+    "${home}/.vimrc"       => "${home}/.vim/vimrc",
     "${home}/.zsh_aliases" => "${home}/.dotfiles/aliases",
-    "${home}/.zshrc" => "${home}/.dotfiles/zshrc",
-    "${home}/.atom" => "${home}/.dotfiles/atom",
-    "${home}/.gemrc" => "${home}/.dotfiles/gemrc",
+    "${home}/.zshrc"       => "${home}/.dotfiles/zshrc",
+    "${home}/.atom"        => "${home}/.dotfiles/atom",
+    "${home}/.gemrc"       => "${home}/.dotfiles/gemrc",
   }
 
   $links.each |$link,$target| {
