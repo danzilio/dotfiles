@@ -18,9 +18,5 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-source /opt/boxen/env.sh
-alias gpg=gpg2
-alias mou="open -a Mou"
 PATH=$PATH:$HOME/bin
-export DOCKER_HOST=tcp://localhost:4243
 export GOPATH=~/go

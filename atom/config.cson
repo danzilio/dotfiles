@@ -1,14 +1,15 @@
 "*":
+  core:
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "base16-tomorrow-dark-theme"
+    ]
   editor:
     invisibles: {}
     showInvisibles: true
-  core:
-    themes: [
-      "atom-dark-ui"
-      "base16-tomorrow-dark-theme"
-    ]
   "exception-reporting":
     userId: "ab4b521a-924c-bb3e-90e3-870dbd72b823"
+  linter: {}
   welcome:
     showOnStartup: false
-  linter: {}

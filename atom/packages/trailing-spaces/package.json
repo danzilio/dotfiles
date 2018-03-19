@@ -1,37 +1,59 @@
 {
-  "name": "trailing-spaces",
-  "version": "0.2.4",
-  "main": "./lib/main.coffee",
-  "description": "Highlights trailing white space.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wpillar/atom-trailing-spaces"
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+        "spec": "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/apm-install-dir-118219-37395-1ib61kz.b6hhxb6gvi"
+    ]
+  ],
+  "_from": "../d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+  "_id": "trailing-spaces@0.4.0",
+  "_inCache": true,
+  "_location": "/trailing-spaces",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+    "spec": "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+    "type": "local"
   },
-  "license": "MIT",
-  "engines": {
-    "atom": ">0.50.0"
-  },
-  "readme": "# Trailing Spaces\n\nHighlights trailing whitespace.\n\n## Installation ##\n\nUse the Atom package manager, which can be found in the Settings view or run `apm install trailing-spaces`  from the command line.\n\n## Screenshot ##\n\n![](http://snag.gy/OpJpI.jpg)\n",
-  "readmeFilename": "README.md",
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+  "_shasum": "d318a3a4b17056199f8f9e60301244bfb89253e8",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/d-118219-37395-1jjhig9.9q5ru7syvi/package.tgz",
+  "_where": "/private/var/folders/s3/lmr6gw5d5_z4wd31mp6yhg480000gn/T/apm-install-dir-118219-37395-1ib61kz.b6hhxb6gvi",
   "bugs": {
     "url": "https://github.com/wpillar/atom-trailing-spaces/issues"
   },
-  "homepage": "https://github.com/wpillar/atom-trailing-spaces",
-  "_id": "trailing-spaces@0.2.4",
-  "_shasum": "5a4e039e51c6289946b8f5086fadf36046fe0f79",
-  "_resolved": "file:../d-11515-14722-1l8iga8/package.tgz",
-  "_from": "../d-11515-14722-1l8iga8/package.tgz",
-  "_atomModuleCache": {
-    "version": 1,
-    "dependencies": [],
-    "extensions": {
-      ".coffee": [
-        "lib/main.coffee"
-      ],
-      ".json": [
-        "package.json"
-      ]
-    },
-    "folders": []
-  }
+  "dependencies": {},
+  "description": "Highlights trailing white space.",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/wpillar/atom-trailing-spaces#readme",
+  "license": "MIT",
+  "main": "./lib/main.coffee",
+  "name": "trailing-spaces",
+  "optionalDependencies": {},
+  "readme": "# Trailing Spaces\n\nHighlights trailing whitespace.\n\n## Installation ##\n\nUse the Atom package manager, which can be found in the Settings view or run `apm install trailing-spaces`  from the command line.\n\n## Configuration ##\n\nConfiguration options are available for:\n- Enable/disable highlight on lines with a cursor\n- Enable/disable highlight on lines which contain only indentation\n\n## Screenshot ##\n\n![](http://snag.gy/OpJpI.jpg)\n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wpillar/atom-trailing-spaces.git"
+  },
+  "version": "0.4.0"
 }

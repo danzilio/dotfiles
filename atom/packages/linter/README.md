@@ -1,175 +1,111 @@
-# Linter
+Linter
+======
 
-[![Gitter](https://img.shields.io/badge/gitter-join%20chat-1dce73.svg?style=flat)](https://gitter.im/AtomLinter/Linter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://img.shields.io/travis/AtomLinter/Linter.svg?style=flat)](https://travis-ci.org/AtomLinter/Linter)
+[![Greenkeeper badge](https://badges.greenkeeper.io/steelbrain/linter.svg)](https://greenkeeper.io/)
 
-Lint your code with ease in [Atom](http://atom.io).
+[![Slack Badge](https://img.shields.io/badge/chat-atom.io%20slack-blue.svg?style=flat-square)](http://atom-slack.herokuapp.com/)
+[![Build Status](https://img.shields.io/circleci/project/steelbrain/linter.svg?style=flat-square)](https://circleci.com/gh/steelbrain/linter)
+[![Plugin installs!](https://img.shields.io/apm/dm/linter.svg?style=flat-square)](https://atom.io/packages/linter)
+[![Package version!](https://img.shields.io/apm/v/linter.svg?style=flat-square)](https://atom.io/packages/linter)
+[![Dependencies!](https://img.shields.io/david/steelbrain/Linter.svg?style=flat-square)](https://david-dm.org/steelbrain/linter)
+[![OpenCollective](https://opencollective.com/linter/backers/badge.svg)](#backers) 
+[![OpenCollective](https://opencollective.com/linter/sponsors/badge.svg)](#sponsors)
 
-![atom-inline-messages](https://raw.githubusercontent.com/AtomLinter/Linter/master/inline-comments.gif)
 
-The idea is to stop the linter plugins war, by providing a top level API for linters to parse and display errors in the Atom editor.
+Linter is a base linter provider for the hackable [Atom Editor](http://atom.io). Additionally, you need to install a specific linter for your language. You will find a full list on [atomlinter.github.io](http://atomlinter.github.io/).
 
-## Available linters
-#### for JavaScript
-- [linter-jshint](https://atom.io/packages/linter-jshint), for JavaScript and JSON, using `jshint`
-- [linter-jscs](https://atom.io/packages/linter-jscs), for JavaScript, using `jscs`
-- [linter-jsxhint](https://atom.io/packages/linter-jsxhint), for JSX (React.js), using `jsxhint`
-- [linter-eslint](https://atom.io/packages/linter-eslint), for JavaScript, using `eslint`
-- [linter-gjslint](https://atom.io/packages/linter-gjslint), for JavaScript, using `gjslint`
-- [linter-flow](https://atom.io/packages/linter-flow), for JavaScript, using `flow`
+It provides a top-level API to its consumer so that they can visualize errors and other types of messages with ease.
 
-#### for CoffeeScript
-- [linter-coffeelint](https://atom.io/packages/linter-coffeelint), for CoffeeScript, using `coffeelint`
 
-#### for Typescript
-- [linter-tslint](https://atom.io/packages/linter-tslint), for Typescript, using `tslint`
+![Preview](https://cloud.githubusercontent.com/assets/4278113/23879933/1ab17e2a-0872-11e7-803d-3fe0ccfc6790.gif)
 
-#### for Dart
-- [linter-dartanalyzer](https://atom.io/packages/linter-dartanalyzer), for Dart using `dartanalyzer`
+#### How to / Installation
 
-#### for LiveScript
-- [linter-lsc](https://atom.io/packages/linter-lsc), for LiveScript, using `lsc -a`
+You can install through the CLI by doing:
 
-#### for Ruby and Ruby on Rails
-- [linter-rubocop](https://atom.io/packages/linter-rubocop), for Ruby and Ruby on Rails, using `rubocop`
-- [linter-ruby](https://atom.io/packages/linter-ruby), for Ruby, using `ruby -wc`
-- [linter-erb](https://atom.io/packages/linter-erb), for .erb files, using `erb -x`
-- [linter-haml](https://atom.io/packages/linter-haml), for .haml files, using `haml-lint`
+```
+$ apm install linter
+```
 
-#### for PHP
-- [linter-php](https://atom.io/packages/linter-php), for PHP using `php -l`
-- [linter-phpcs](https://atom.io/packages/linter-phpcs), for PHP, using `phpc`
-- [linter-phpmd](https://atom.io/packages/linter-phpmd), for PHP, using `phpmd`
+Or you can install from Settings view by searching for `Base Linter`, (this package might not show up when searching for `Linter`).
 
-#### for Python
-- [linter-pylint](https://atom.io/packages/linter-pylint), for Python, using `pylint`
-- [linter-pyflakes](https://atom.io/packages/linter-pyflakes), for Python, using `pyflakes`
-- [linter-pep8](https://atom.io/packages/linter-pep8), for Python, using `pep8`.
-- [linter-pep257](https://atom.io/packages/linter-pep257), for Python, using `pep257`
-- [linter-flake8](https://atom.io/packages/linter-flake8), for Python, using `flake8`
-- [linter-pylama](https://atom.io/packages/linter-pylama), for Python, using `pylama`
+#### API Documentation
 
-#### for Java
-- [linter-javac](https://atom.io/packages/linter-javac), for Java, using `javac`
+Please navigate to [steelbrain.me/linter](http://steelbrain.me/linter/) for Linter v2 documentation.
 
-#### for CSS / SASS / SCSS / LESS
-- [linter-scss-lint](https://atom.io/packages/linter-scss-lint), for SASS/SCSS, using `scss-lint`
-- [linter-less](https://atom.io/packages/linter-less), for LESS, using `less`
-- [linter-csslint](https://atom.io/packages/linter-csslint), for CSS, using `csslint`
+#### Contribute
 
-#### for XML
-- [linter-xmllint](https://atom.io/packages/linter-xmllint), for XML, using `xmllint`
+Stick to imposed codestyle:
 
-#### for Bash
-- [linter-shellcheck](https://atom.io/packages/linter-shellcheck), for Bash, using `shellcheck`
+* `$ npm i`
+* `$ npm test`
 
-#### for Scala
-- [linter-scalac](https://atom.io/packages/linter-scalac), for Scala, using `scalac`
+#### Backers
 
-#### for C / C++
-- [linter-clang](https://atom.io/packages/linter-clang), for C / C++, using `clang`
-- [linter-cpplint](https://atom.io/packages/linter-cpplint), for C++, using `cpplint`
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/linter#backer)]
 
-#### for Lua
-- [linter-lua](https://atom.io/packages/linter-lua), for Lua, using `luac -p`
-- [linter-luacheck](https://atom.io/packages/linter-luacheck) for Lua, using `luacheck`
+<a href="https://opencollective.com/linter/backer/0/website" target="_blank"><img src="https://opencollective.com/linter/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/1/website" target="_blank"><img src="https://opencollective.com/linter/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/2/website" target="_blank"><img src="https://opencollective.com/linter/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/3/website" target="_blank"><img src="https://opencollective.com/linter/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/4/website" target="_blank"><img src="https://opencollective.com/linter/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/5/website" target="_blank"><img src="https://opencollective.com/linter/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/6/website" target="_blank"><img src="https://opencollective.com/linter/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/7/website" target="_blank"><img src="https://opencollective.com/linter/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/8/website" target="_blank"><img src="https://opencollective.com/linter/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/9/website" target="_blank"><img src="https://opencollective.com/linter/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/10/website" target="_blank"><img src="https://opencollective.com/linter/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/11/website" target="_blank"><img src="https://opencollective.com/linter/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/12/website" target="_blank"><img src="https://opencollective.com/linter/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/13/website" target="_blank"><img src="https://opencollective.com/linter/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/14/website" target="_blank"><img src="https://opencollective.com/linter/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/15/website" target="_blank"><img src="https://opencollective.com/linter/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/16/website" target="_blank"><img src="https://opencollective.com/linter/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/17/website" target="_blank"><img src="https://opencollective.com/linter/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/18/website" target="_blank"><img src="https://opencollective.com/linter/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/19/website" target="_blank"><img src="https://opencollective.com/linter/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/20/website" target="_blank"><img src="https://opencollective.com/linter/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/21/website" target="_blank"><img src="https://opencollective.com/linter/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/22/website" target="_blank"><img src="https://opencollective.com/linter/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/23/website" target="_blank"><img src="https://opencollective.com/linter/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/24/website" target="_blank"><img src="https://opencollective.com/linter/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/25/website" target="_blank"><img src="https://opencollective.com/linter/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/26/website" target="_blank"><img src="https://opencollective.com/linter/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/27/website" target="_blank"><img src="https://opencollective.com/linter/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/28/website" target="_blank"><img src="https://opencollective.com/linter/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/linter/backer/29/website" target="_blank"><img src="https://opencollective.com/linter/backer/29/avatar.svg"></a>
 
-#### for Clojure
-- [linter-clojure](https://atom.io/packages/linter-clojure), for Clojure, using `clojure`
+#### Sponsors
 
-#### for Puppet
-- [linter-puppet-lint](https://atom.io/packages/linter-puppet-lint), for Puppet, using `puppet-lint`
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/linter#sponsor)]
 
-#### for Yaml
-- [linter-js-yaml](https://atom.io/packages/linter-js-yaml), for Yaml, using `js-yaml`
-
-#### for Haskell
-- [linter-hlint](https://atom.io/packages/linter-hlint), for Haskell files, using `hlint`
-
-#### for HTML / Bootstrap
-- [linter-bootlint](https://atom.io/packages/linter-bootlint), for Bootstrap HTML, using `bootlint`
-- [linter-tidy](https://atom.io/packages/linter-tidy), for HTML, using `tidy`
-- [linter-htmlhint](https://atom.io/packages/linter-htmlhint), for html, using `htmlhint`
-
-#### for Squirrel
-- [linter-squirrel](https://atom.io/packages/linter-squirrel), for squirrel, using `squirrel-compiler`
-
-#### for CoDScript
-- [linter-codscriptizer](https://atom.io/packages/linter-codscriptizer), for CoDScript, using `codscriptizer -l`
-
-#### for harbour
-- [linter-harbour](https://atom.io/packages/linter-harbour), for Harbour, using `harbour`
-
-#### for Rust
-- [linter-rust](https://atom.io/packages/linter-rust), for Rust, using `rustc`
-
-#### for Elixir
-- [linter-elixirc](https://atom.io/packages/linter-elixirc), for Elixir, using `elixirc`
-
-#### for Erlang
-- [linter-erlc](https://atom.io/packages/linter-erlc), for Erlang, using `erlc`
-
-#### for ActionScript/Flash/Flex/AIR
-- [linter-flexpmd](https://atom.io/packages/linter-flexpmd),for ActionScript/Flash/Flex/AIR, using flexpmd
-
-## Features
-
-* **Lint on edit** – Instant error reporting for you! (And it's fast!)
-* **Modular** – You install only the linters you need.
-* **Active** – New linters are out every week.
-
-## Installation
-
-1. `$ apm install linter` – Install the main package.
-2. `$ apm install linter-jshint` – Install the linter you need, here `jshint`.
-
-## Configuration
-
-* **Lint on save** [On / Off] - Lint the file when you save it
-* **Lint on change** [On / Off] - Lint the file as you type
-* **Show highlighting** [On / Off] - Highlight the range of wrong code
-* **Show gutters**: [On / Off] - Show dot in the gutter on line error
-* **Show messages around cursor** [On / Off] - Show error description in the status bar
-* **Show status bar when cursor is in error range** [On / Off] - Either show status bar when the cursor is on the error line, or show it when the cursor is focus the range of wrong code
-* **Show error inline** [On / Off] - Shows the error or warning message next to the code as opposed to in the status bar.
-* **Lint on change interval** [in ms] - Interval between two lints while you are writing code
-
-## Common errors
-
-* `npm ERR! code ENOGIT` - You need to install git before installing linter. See [#114](https://github.com/AtomLinter/Linter/issues/102).
-* `env: node: No such file or directory` – There's a problem with your node path – [check this](http://stackoverflow.com/a/20077620).
-* `spawn ENOENT` or `spawn ENOTDIR` - A linter can't find a path to the executable. Try starting Atom from a shell via `atom` to make sure it gets your `PATH`. See also [#102](https://github.com/AtomLinter/Linter/issues/102), [#150](https://github.com/AtomLinter/Linter/issues/150).
-
-## Documentation
-http://atomlinter.github.io/Linter/
-
-## Coming soon
-
-- linter-pep257, for python, using `pep257`.
-- linter-rst, for reStructuredText, using `docutils`.
-- linter-phplint, for PHP, using `phplint`.
-- linter-jsl, for JavaScript, using `jsl`.
-- linter-oclitnt, for C / C++ / Objective-C, using `OCLint`.
-
-## Contributing
-
-If you're going to submit a pull request, please try to follow
-[the official contribution guidelines of Atom](https://atom.io/docs/latest/contributing).
-
-You need `nodejs` and `grunt-cli` installed before contributing.
-Run `bower install node` then `npm install -g grunt-cli`.
-
-Also, run `$ grunt dev` before any submission and while developing, it will achieves severals tasks:
-
-* Compile and lint the CoffeeScript files
-* Lint the stylesheets
-* Lint any trailing spaces and ensure new line at end of file
-
-You can generate the doc with `$ grunt doc`, it will open in your default browser.
-
-## Donation
-[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)
-
-[![donate-paypal](https://s3-eu-west-1.amazonaws.com/chewbacco-stuff/donate-paypal.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)
-
-<a class="coinbase-button" data-code="2945dab392cb1cefbb7097e4cd17a603" data-button-style="custom_small" href="https://www.coinbase.com/checkouts/2945dab392cb1cefbb7097e4cd17a603">Donate Bitcoins</a><script src="https://www.coinbase.com/assets/button.js" type="text/javascript"></script>
+<a href="https://opencollective.com/linter/sponsor/0/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/1/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/2/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/3/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/4/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/5/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/6/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/7/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/8/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/9/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/10/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/10/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/11/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/11/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/12/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/12/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/13/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/13/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/14/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/14/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/15/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/15/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/16/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/16/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/17/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/17/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/18/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/18/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/19/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/19/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/20/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/20/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/21/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/21/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/22/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/22/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/23/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/23/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/24/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/24/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/25/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/25/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/26/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/26/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/27/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/27/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/28/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/28/avatar.svg"></a>
+<a href="https://opencollective.com/linter/sponsor/29/website" target="_blank"><img src="https://opencollective.com/linter/sponsor/29/avatar.svg"></a>

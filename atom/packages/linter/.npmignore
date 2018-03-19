@@ -1,6 +1,5 @@
 .DS_Store
 npm-debug.log
 node_modules
-.grunt/
-.tmp/
-doc/
+.idea
+spec/fixtures/ignored.txt

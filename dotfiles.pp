@@ -1,4 +1,4 @@
-# Sets up my dotfiles. Requires the future parser.
+# Sets up my dotfiles.
 #
 class dotfiles {
   $home = inline_template('<%= Dir.home %>')
@@ -14,7 +14,7 @@ class dotfiles {
     ensure     => present,
     provider   => git,
     submodules => true,
-    source     => 'https://github.com/danzilio/dotfiles.git',
+    source     => 'https://github.com/danzilio/dotfiles',
   }
 
   $links = {
@@ -24,6 +24,7 @@ class dotfiles {
     "${home}/.zshrc"       => "${home}/.dotfiles/zshrc",
     "${home}/.atom"        => "${home}/.dotfiles/atom",
     "${home}/.gemrc"       => "${home}/.dotfiles/gemrc",
+    "${home}/Brewfile"     => "${home}/.dotfiles/Brewfile",
   }
 
   $links.each |$link,$target| {
@@ -33,3 +34,5 @@ class dotfiles {
     }
   }
 }
+
+include dotfiles

@@ -2,56 +2,73 @@ Os = require 'os'
 Path = require 'path'
 fs = require 'fs-plus'
 
-{$, TextEditorView, View} = require 'atom-space-pen-views'
+{CompositeDisposable} = require 'atom'
+{TextEditorView, View} = require 'atom-space-pen-views'
 
 git = require '../git'
 
-showCommitFilePath = ->
-  Path.join Os.tmpDir(), "atom_git_plus_commit.diff"
+showCommitFilePath = (objectHash) ->
+  Path.join Os.tmpDir(), "#{objectHash}.diff"
 
-showObject = (objectHash, file) ->
-  args = ['show']
-  args.push '--word-diff' if atom.config.get 'git-plus.wordDiff'
+isEmpty = (string) -> string is ''
+
+showObject = (repo, objectHash, file) ->
+  objectHash = if isEmpty objectHash then 'HEAD' else objectHash
+  args = ['show', '--color=never']
+  showFormatOption = atom.config.get 'git-plus.general.showFormat'
+  args.push "--format=#{showFormatOption}" if showFormatOption != 'none'
+  args.push '--word-diff' if atom.config.get 'git-plus.diffs.wordDiff'
   args.push objectHash
-  if file?
-    args.push '--'
-    args.push file
+  args.push '--', file if file?
 
-  git.cmd
-    args: args,
-    stdout: (data) -> prepFile data
+  git.cmd(args, cwd: repo.getWorkingDirectory())
+  .then (data) -> prepFile(data, objectHash) if data.length > 0
 
-prepFile = (text) ->
-  fs.writeFileSync showCommitFilePath(), text, flag: 'w+'
-  showFile()
+prepFile = (text, objectHash) ->
+  fs.writeFile showCommitFilePath(objectHash), text, flag: 'w+', (err) ->
+    if err then notifier.addError err else showFile objectHash
 
-showFile = ->
-  split = if atom.config.get('git-plus.openInPane') then atom.config.get('git-plus.splitPane')
-  atom.workspace
-    .open(showCommitFilePath(), split: split, activatePane: true)
+showFile = (objectHash) ->
+  filePath = showCommitFilePath(objectHash)
+  disposables = new CompositeDisposable
+  editorForDiffs = atom.workspace.getPaneItems().filter((item) -> item.getURI?()?.includes('.diff'))[0]
+  if editorForDiffs?
+    editorForDiffs.setText fs.readFileSync(filePath, encoding: 'utf-8')
+  else
+    if atom.config.get('git-plus.general.openInPane')
+      splitDirection = atom.config.get('git-plus.general.splitPane')
+      atom.workspace.getCenter().getActivePane()["split#{splitDirection}"]()
+    atom.workspace
+      .open(filePath, pending: true, activatePane: true)
+      .then (textBuffer) ->
+        if textBuffer?
+          disposables.add textBuffer.onDidDestroy ->
+            disposables.dispose()
+            try fs.unlinkSync filePath
 
 class InputView extends View
   @content: ->
     @div =>
-      @subview 'objectHash', new TextEditorView(mini: true, placeholderText: 'Commit hash to show')
+      @subview 'objectHash', new TextEditorView(mini: true, placeholderText: 'Commit hash to show. (Defaults to HEAD)')
 
-  initialize: (callback) ->
+  initialize: (@repo) ->
+    @disposables = new CompositeDisposable
+    @currentPane = atom.workspace.getActivePane()
     @panel ?= atom.workspace.addModalPanel(item: this)
     @panel.show()
-    @on 'core:cancel', =>
-      @destroy()
     @objectHash.focus()
-    @objectHash.on 'core:confirm', =>
-      text = @objectHash.getModel().getText().split(' ')
-      name = if text.length is 2 then text[1] else text[0]
-      callback text
+    @disposables.add atom.commands.add 'atom-text-editor', 'core:cancel': => @destroy()
+    @disposables.add atom.commands.add 'atom-text-editor', 'core:confirm': =>
+      text = @objectHash.getModel().getText().split(' ')[0]
+      showObject(@repo, text)
       @destroy()
 
   destroy: ->
-    @panel.destroy()
+    @disposables?.dispose()
+    @panel?.destroy()
 
-module.exports = (objectHash, file) ->
+module.exports = (repo, objectHash, file) ->
   if not objectHash?
-    new InputView(showObject)
+    new InputView(repo)
   else
-    showObject(objectHash, file)
+    showObject(repo, objectHash, file)

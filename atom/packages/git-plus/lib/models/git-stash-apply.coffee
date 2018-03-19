@@ -1,12 +1,11 @@
 git = require '../git'
-StatusView = require '../views/status-view'
+notifier = require '../notifier'
+OutputViewManager = require '../output-view-manager'
 
-gitStashApply = ->
-  git.cmd
-    args: ['stash', 'apply'],
-    options: {
-      env: process.env.NODE_ENV
-    }
-    stdout: (data) -> new StatusView(type: 'success', message: data)
-
-module.exports = gitStashApply
+module.exports = (repo) ->
+  cwd = repo.getWorkingDirectory()
+  git.cmd(['stash', 'apply'], {cwd}, color: true)
+  .then (msg) ->
+    OutputViewManager.getView().showContent(msg) if msg isnt ''
+  .catch (msg) ->
+    notifier.addInfo msg

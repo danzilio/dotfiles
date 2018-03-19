@@ -2,14 +2,13 @@ Os = require 'os'
 Path = require 'path'
 fs = require 'fs-plus'
 
-{BufferedProcess} = require 'atom'
+{BufferedProcess, CompositeDisposable} = require 'atom'
 {$, TextEditorView, View} = require 'atom-space-pen-views'
-StatusView = require './status-view'
+notifier = require '../notifier'
 git = require '../git'
 
 module.exports=
 class TagCreateView extends View
-
   @content: ->
     @div =>
       @div class: 'block', =>
@@ -22,25 +21,26 @@ class TagCreateView extends View
         @span class: 'pull-right', =>
           @button class: 'btn btn-error inline-block-tight gp-cancel-button', click: 'destroy', 'Cancel'
 
-  initialize: ->
+  initialize: (@repo) ->
+    @disposables = new CompositeDisposable
+    @currentPane = atom.workspace.getActivePane()
     @panel ?= atom.workspace.addModalPanel(item: this)
     @panel.show()
     @tagName.focus()
-    @on 'core:cancel', => @destroy()
-    @on 'core:confirm', => @createTag()
+    @disposables.add atom.commands.add 'atom-text-editor', 'core:cancel': => @destroy()
+    @disposables.add atom.commands.add 'atom-text-editor', 'core:confirm': => @createTag()
 
   createTag: ->
     tag = name: @tagName.getModel().getText(), message: @tagMessage.getModel().getText()
-    new BufferedProcess
-      command: 'git'
-      args: ['tag', '-a', tag.name, '-m', tag.message]
-      options:
-        cwd: git.dir()
-      stderr: (data) ->
-        new StatusView(type: 'alert', message: data.toString())
-      exit: (code) ->
-        new StatusView(type: 'success', message: "Tag '#{tag.name}' has been created successfully!") if code is 0
+    flag = if atom.config.get('git-plus.tags.signTags') then '-s' else '-a'
+    git.cmd(['tag', flag, tag.name, '-m', tag.message], cwd: @repo.getWorkingDirectory())
+    .then (success) ->
+      console.info("Created git tag #{tag.name}:", success)
+      notifier.addSuccess("Tag '#{tag.name}' has been created successfully!")
+    .catch notifier.addError
     @destroy()
 
   destroy: ->
-    @panel.destroy()
+    @panel?.destroy()
+    @disposables.dispose()
+    @currentPane.activate()
